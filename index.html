@@ -1,39 +1,354 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .Slectors{
-        background-color: transparent 1.5s;
-        border: none;
-        font-size: 15px;
-        font-family: Verdana, sans-serif;
-        position: relative;
-      }
-      h3{
-        font-size: 25px;
-        position: sticky;
-        font-family: Verdana, sans-serif;
-      }
-      .Slectors: hover{
-        background-color: rgb(0,28,87);
-        transition: background-color 0.75s ease-in-out;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="one">
-      <div id="two">
-        <img src="">
-      </div>
-      <h3>Print Forge 3D</h3>
-      <button class="Slectors">Home</button>
-      <button class="Slectors">Credit</button>
-      <button class="Slectors">Policies</button>
-      <button class="Slectors">About The Founder</button>
-      <button class="Slectors">Business Card</button>
+    <head>
+        <title>Print Forge 3D</title>
+        <link href="fonts.googleapis.com" rel="stylesheet">
+        <style>
+            .pointer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            width: 2rem;
+            aspect-ratio: 1;
+            background-color: rgba(255,255,255,0.35);
+            border: solid 2px transparent;
+            border-radius: 100%;
+            pointer-events: none;
+            transform: translate3d(var(--mouseX, 0), var(--mouseY, 0), 0) translate(-50% ,-50% );
+            transition: 0.3s ease-out;
+            transition-property: transform, width, border, background-color;
+
+        }
+        //body:has(.:hover) .pointer{
+            //width: 5rem;
+            //background-color: transparent;
+            //border-color: rgba(255,255,255,0.5);
+        //}
+            #banner{
+                background-color: rgba(120,120,120,0.7);
+                border: none;
+                border-radius: 5px;
+                text-align: center;
+                transition: color 0.75s ease-in-out , box-shadow 0.75s ease-in-out;
+                color: rgb(20,20,20);
+                
+            }
+            #banner:hover{
+                background-color: rgba(100,100,100,0.7);
+                box-shadow: 0 12px 2px -1px rgba(80,80,80, 0.5);
+                color: rgba(15,15,15,0.8);
+            }
+            .L1{
+                postition: fixed;
+
+            }
+            #About{
+                display: flex;
+                border: none;
+                border-radius: 5px;
+                background-color: rgb(120,120,120);
+                width: 140px;
+                margin: 0 5px 0 5px;
+                box-shadow: 0 0 0 0 rgb(130,130,130);
+                transition: background-color 0.75s ease-in-out , box-shadow 0.75s ease-in-out;
+                align-items: center;
+            }
+            #About:hover{
+                display: flex;
+                background-color: rgba(80,80,80,0.75);
+                box-shadow: 0 10px 4px -2px rgba(130,130,130, 0.8);
+                margin: 0 5px 0 5px;
+                align-items: center;
+            }
+            #About2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Times New Roman',sans-serif;
+            color: rgb(25,25,25);
+            border: none;
+            transition: color 0.75s linear; 
+            background-color: transparent;
+            width: 140px;
+            }
+            #About2:hover{
+            font-family: 'Times New Roman',sans-serif;
+            color: rgb(20,20,20);
+            text-align: center;
+            border: none;
+            background-color: transparent;
+            }
+            .options{
+                display: flex;
+                border: none;
+                border-radius: 5px;
+                background-color: rgb(120,120,120);
+                width: 90px;
+                margin: 0 5px 0 5px;
+                box-shadow: 0 0 0 0 rgb(130,130,130);
+                transition: background-color 0.75s ease-in-out , box-shadow 0.75s ease-in-out;
+                align-items: center;
+                padding: 0 10px 0 10px;
+                
+            }
+            .options:hover{
+                display: flex;
+                background-color: rgba(80,80,80,0.75);
+                box-shadow: 0 10px 4px -2px rgba(130,130,130, 0.8);
+                margin: 0 5px 0 5px;
+                align-items: center;
+            }
+            .Text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Times New Roman',sans-serif;
+            color: rgb(25,25,25);
+            border: none;
+            transition: color 0.75s linear; 
+            background-color: transparent;
+            width: 90px;
+            }
+            .Text:hover{
+            font-family: 'Times New Roman',sans-serif;
+            color: rgb(20,20,20);
+            text-align: center;
+            border: none;
+            background-color: transparent;
+
+            }
+            body{
+                //background-image: url('');
+                //background-repeat: no-repeat;
+                //background-size: cover;
+                background-color: rgb(0,0,0);
+
+            }
+            #Baner{
+            display: flex;
+            background-color: rgba(60,60,60,0.75);
+            border: none;
+            border-radius: 5px;
+            padding: 3px 0 3px 0;
+            }
+            .dot {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            }
+            .dots {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+            }
+            #mainbody{
+            font-family: "Times New Roman", sans-serif;
+            }
+            #Rial{
+            color: rgba(255,255,255, 0.8);
+            font-size: 40px;
+            position: relative;
+            top: 100px;
+            left: 580px
+            }
+            #Welcome{
+            text-align: center;
+            color: rgba(255,255,255, 0.8);
+            }
+            #welcome{
+            color: rgba(255,255,255, 0.8);
+            font-size: 20px;
+            display: flex;
+            position: relative;
+            transition: color 1s ease-in-out;
+            }
+            #welcome:hover{
+            color: rgba(220,220,220,0.8)
+            }
+            #tezt{
+            font-size: 20px;
+            color: rgba(255,255,255, 0.8);
+            position: relative;
+            top: 90px;
+            left: 500px;
+            width: 450px
+            }
+            #sponsers{
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            font-size: 40px;
+            top: 120px;
+            text-align: center;
+            }
+            #Krishang{
+            color: rgba(255,255,255,0.8);
+            font-size: 30px;
+            position: relative;
+            top: 160px;
+            left: 150px;
+            }
+            #k{
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            top: 135px;
+            left: 200px;
+            }
+            #Brentyn{
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            font-size: 30px;
+            top: 50px;
+            left: 700px;
+            }
+            #b{
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            top: 25px;
+            left: 750px;
+            }
+            #fidgets{
+            width: ;
+            }
+            #email{
+            color: rgba(255,255,255, 0.8);
+            background-color: rgba(20,20,20,0.8);
+            position: relative;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+            transition: box-shadow 1s ease-in-out;
+            }
+            #email:hover{
+            box-shadow: 0 7.5px 3px -2px rgba(31,81,255,0.3)
+            }
+        </style>
+    </head>
+    <body>
+    <div class="pointer" aria-hidden="true"></div>
+    <div id="banner">
+      <h2>PrintForge3D</h2>
     </div>
-    <script>
-      
-    </script>
-  </body>
+    </div>
+    <div id="Baner">
+        <div id="About" >
+            <button id="About2"onclick="location.href='Founder.html'">About the Founder</button>
+        </div>
+        <div class="options">
+            <button class="Text" onclick="location.href='Credit.html'">Credit</button>
+        </div>
+        <div class="options">
+            <button class="Text" onclick="location.href='Policies.html'">Policies</button>
+        </div>
+        <div class="options">
+            <button class="Text" onlick="locatoin.href='card.html'">Business Card</button>
+        </div>
+        <!--<div id="searchBar">
+            <input>
+        </div>-->
+    </div>
+     <h1 id="Welcome"class="error">Welcome to PrintForge3D!</h1>
+    <div id="welcome">
+    <p> Hi, I'm the creator of PrintForge3D and this is just a project remake of my 
+    <a href="https://sites.google.com/nastudents.org/print-forge-3d/home" target="_blank">
+    original website</a> made in google sites in 2025.</p>
+    </div>
+<div id="mainbody">
+    <p  id="Rial"class="error">Castle of Chance</p>
+    <p  id="tezt"class="error">Do you like fidgets and like try your chance? 
+        Well this shop is just for you! You roll 3 dice 
+        with a Castle Dice Roller(hence the name) and 
+        based on your score( sum of dice) you with get 
+        a different prize. We offer this chance for only 
+        2 dollars or 82,225* Iranian Rial. Try to stop on 
+        my shop on the opening day!</p>
+    <p id="sponsers">Sponsers:</p>
+    <p id="Krishang">Fantastico Fidgets</p>
+    <p id="k"> By: Krishang T.</p>
+    <p id="Brentyn"> Getaway Games</p>
+    <p id="b"> By: Brentyn P.</p>
+    <img id="fidgets" src="">
+    <img id="games" src="">
+    <div  id="bottomBanner">
+        <img id="logo" src="">
+        <div id="email">
+            <p> Questions?, 
+                <a href="malito: gli@nastudents.org">Email Me</a>
+            </p>
+        </div>
+</div>
+    </div> 
+    <div class="dots" aria-hidden="true">
+    <script>  
+const isReducedMotion = window.matchMedia('(prefers-reduced-motion reduce)').matches;
+const isTouch = window.matchMedia('(pointer: coarse)').matches;
+const shouldRun = !isReducedMotion && !isTouch;
+if(shouldRun){
+let mouseX = 0;
+let mouseY = 0;
+const pointer = document.querySelector('.pointer');
+//const coordinates = document.querySelector('#coordinates strong');
+window.addEventListener('mousemove', (e) => { 
+    mouseX = e.clientX; 
+    mouseY = e.clientY;
+    
+        });
+    function animate(){
+        pointer.style.setProperty('--mouseX' , `${mouseX}px`);
+    pointer.style.setProperty('--mouseY' , `${mouseY}px`);
+    requestAnimationFrame(animate);
+ }
+    animate();
+
+}
+
+//New part
+const dotsContainer = document.querySelector('.dots');
+  const numDots = 40;
+  //
+  for(let i = 0; i < numDots; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    //
+    const size = Math.random() * 5 + 3;
+    dot.style.width = size + 'px';
+    dot.style.height = size + 'px';
+    //
+    dot.style.top = (Math.random() * 100) + 'vh';
+    dot.style.left = (Math.random() * 100) + 'vw';
+    //
+    const moveX = (Math.random() * 10 + 5) * (Math.random() > 0.5 ? 1 : -1);
+    const moveY = (Math.random() * 10 + 5) * (Math.random() > 0.5 ? 1 : -1);
+    //
+    const animName = 'move' + i;
+    const keyframes = `
+      @keyframes ${animName} {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(${moveX}px, ${moveY}px); }
+      }
+    `;
+
+    // Append animation document head
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = keyframes;
+    document.head.appendChild(styleSheet);
+
+    dot.style.animation = `${animName} ${3 + Math.random() * 5}s ease-in-out infinite alternate`;
+
+    dotsContainer.appendChild(dot);
+  }
+//New part
+</script>
+    </body>
 </html>
